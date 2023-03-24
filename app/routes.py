@@ -1,11 +1,18 @@
 from app import app
 
 from flask import render_template, request, url_for, redirect
-from .forms import Poke_Name
+
 from .services import get_pokemon
 
 import requests, json
 
+
+from app import app
+
+
+
+from .auth.forms import SignUpForm, LoginForm, Poke_Name
+from .models import User
 
 @app.route('/')
 def homePage():
