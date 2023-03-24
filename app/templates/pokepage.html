@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Enter a Pokemon Name to Learn More About it</h1>
+
+<div class="container">
+    <div class="row justify-content-center"></div> 
+    <form method= 'POST' class="col-4">
+
+        {{ form.hidden_tag() }}
+        {{ form.poke_name(class='form-control', placeholder = 'Pokemon_Name') }}
+        {{ form.submit(class='btn btn-primary', placeholder = 'Submit') }}
+    </form>
+
+    {% if poke_info %}
+    <div class="col-6">
+        <h2>{{ poke_info.name }}</h2>
+        <p>{{ poke_info.ability }}</p>
+        <p>{{ poke_info.base_xp }}</p>
+        <p><img src="{{ poke_info.front_shiny }}"/></p>
+        <p>{{ poke_info.bask_atk }}</p>
+        <p>{{ poke_info.base_hp }}</p>
+        <p>{{ poke_info.base_def }}</p>
+    </div>
+    {% endif %}
+
+</div>
+    {% endblock %}
