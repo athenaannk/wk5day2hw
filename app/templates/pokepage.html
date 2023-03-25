@@ -1,28 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Enter a Pokemon Name to Learn More About it</h1>
+<h1 class="text-center">Enter a Pokemon Name to Learn More About it</h1>
 
 <div class="container">
-    <div class="row justify-content-center"></div> 
-    <form method= 'POST' class="col-4">
+    <div class="row justify-content-center" >
+    <form method='POST' class="col-4">
 
         {{ form.hidden_tag() }}
         {{ form.poke_name(class='form-control', placeholder = 'Pokemon_Name') }}
         {{ form.submit(class='btn btn-primary', placeholder = 'Submit') }}
     </form>
+    </div>
 
-    {% if poke_info %}
-    <div class="col-6">
-        <h2>{{ poke_info.name }}</h2>
-        <p>{{ poke_info.ability }}</p>
-        <p>{{ poke_info.base_xp }}</p>
-        <p><img src="{{ poke_info.front_shiny }}"/></p>
-        <p>{{ poke_info.bask_atk }}</p>
-        <p>{{ poke_info.base_hp }}</p>
-        <p>{{ poke_info.base_def }}</p>
+{% if poke_info %}
+
+<div class="card text-center border-dark" style="width: 18rem;">
+    <img src="{{ poke_info.front_shiny }}" class="card-img-top">
+    <div class="card-body">
+        <h3 class="card-title">{{ poke_info.name }}
+      
+    </div>
+    <ul class="list-group list-group-flush justify-content-center">
+        <p>Ability</p>
+        <li class="list-group-item justify-content-center">{{ poke_info.ability }}</li>
+        <p>Base XP</p>
+        <li class="list-group-item">{{ poke_info.base_xp }}</li>
+        <p>Bask ATK</p>
+        <li class="list-group-item">{{ poke_info.bask_atk }}</li>
+        <p>Base HP</p>
+        <li class="list-group-item">{{ poke_info.base_hp }}</li>
+        <p>Base DEF</p>
+        <li class="list-group-item">{{ poke_info.base_def }}</li>
+        
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
     </div>
     {% endif %}
-
 </div>
-    {% endblock %}
+</div>
+
+{% endblock %}
+
