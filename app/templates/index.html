@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +14,7 @@
 <body>
 <a href="/"><img src="{{ url_for('static', filename='Poke_Ball.webp')}}" width="100" > </a>
 <h1>Which Pokemon is Your Favorite?</h1>
-  
+
+{% endblock %}
 </body>
 </html>
