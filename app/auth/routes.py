@@ -8,6 +8,9 @@ from ..models import User
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
+@auth.route('/test')
+def login():
+    return render_template('test.html')
 
 @auth.route('/login', methods=['GET', 'POST'])    
 def loginPage():
@@ -53,7 +56,7 @@ def registerPage():
             user = User(username, email, password)            
             user.saveUser()
 
-            flash(f'Welcome to INSTURBlog {user.username}', 'success')
+            flash(f'Welcome to PokemonInfo {user.username}', 'success')
             return redirect(url_for('auth.loginPage'))
     return render_template('register.html', form=form)
 

@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="text-center">Sign In</h1>
-
+<div class="card mb-3 border-light" style="max-width: 300px;">
+    <div class="row g-0 text-center">
+        <div class="col-md-4 justify-content-center">
+            <img src="{{ url_for('static', filename='Ash_Ketchum_Journeys.png')}}" class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8 text-center">
+            <div class="card-body text-center">
+                <h5 class="card-title">Sign In</h5>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <form method="POST" class="col-4">
@@ -13,7 +23,7 @@
             {{ form.submit(class='btn btn-primary') }}
 
         </form>
-{% endblock %}
+        {% endblock %}
     </div>
 </div>
 
