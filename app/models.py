@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 db= SQLAlchemy()
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
@@ -16,6 +16,10 @@ class User(db.Model):
         self.username = username
         self.email = email
         self.password = generate_password_hash(password) 
+
+    def saveUser(self):
+        db.session.add(self)
+        db.session.commit()
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
