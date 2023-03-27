@@ -1,29 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card mb-3 border-light" style="max-width: 300px;">
-    <div class="row g-0 text-center">
-        <div class="col-md-4 justify-content-center">
-            <img src="{{ url_for('static', filename='Ash_Ketchum_Journeys.png')}}" class="img-fluid rounded-start">
-        </div>
-        <div class="col-md-8 text-center">
-            <div class="card-body text-center">
-                <h5 class="card-title">Sign In</h5>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="container">
     <div class="row justify-content-center">
-        <form method="POST" class="col-4">
-            {{ form.hidden_tag() }}
 
-            {{ form.username(class='form-control', placeholder='Username') }}
-            {{ form.password(class='form-control', placeholder='Password') }}
-            {{ form.submit(class='btn btn-primary') }}
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='sign in.jpg')}}" class="img-fluid rounded-start"
+                style="width: auto ">
 
-        </form>
-        {% endblock %}
+            <form method="POST" class="col-md-8">
+                {{ form.hidden_tag() }}
+
+                {{ form.username(class='form-control', placeholder='Username') }}
+                {{ form.password(class='form-control', placeholder='Password') }}
+                {{ form.submit(class='btn btn-primary') }}
+
+            </form>
+            {% endblock %}
+        </div>
     </div>
-</div>
-
