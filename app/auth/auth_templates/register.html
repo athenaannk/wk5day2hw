@@ -3,9 +3,14 @@
 {% block content %}
 
 
-<h1 class="text-center">Register Here!</h1>
 <div class="container">
     <div class="row justify-content-center">
+
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='create account.jpg')}}" class="img-fluid rounded-start"
+                style="width: auto ">
+
+            <form method="POST" class="col-md-8">
         <form method="POST" class="col-4">
             {{ form.hidden_tag() }}
 
