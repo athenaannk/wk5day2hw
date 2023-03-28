@@ -35,4 +35,21 @@ class Post(db.Model):
         self.body = body
         self.user_id = user_id
 
+class Pokemon(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    base_xp = db.Column(db.String)
+    front_shiny = db.Column(db.String)
+    base_atk = db.Column(db.String)
+    base_hp = db.Column(db.String)
+    base_def = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+    def __init__(self, name, base_xp, front_shiny, base_atk, base_hp, base_def):
+        self.name = name
+        self.base_xp = base_xp
+        self.front_shiny = front_shiny
+        self.base_atk = base_atk
+        self.base_hp = base_hp
+        self.base_def = base_def
+        self.user_id = user_id

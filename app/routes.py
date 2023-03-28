@@ -28,3 +28,16 @@ def pokemonPage():
             print(poke_info)        
             return render_template('pokepage.html', poke_info=poke_info, form=form)
     return render_template('pokepage.html',form=form)
+
+# @app.route()
+# @catch_pokemon
+# def catch():
+#     u = User.query.get(pokename)
+#     if u:
+#         user.catch(u)
+#         flash(f"You caught {pokename}", category='success')
+#     else:
+#         flash(f"{pokename} doesn't exist!", category='danger')
+
+#     return redirect(url_for('homePage'))
+
