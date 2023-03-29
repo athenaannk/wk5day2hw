@@ -28,3 +28,14 @@ body {
     color: black
   
 }
+
+
+.infocard{
+   
+    align-items: center;
+    text-align: center;
+}
+
+.pokepic{
+    width: 400px
+}
