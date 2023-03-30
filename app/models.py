@@ -6,6 +6,11 @@ from werkzeug.security import generate_password_hash
 db= SQLAlchemy()
 
 
+pokesquadTable = db.Table(
+    'pokesquadTable',
+    db.Column('name', db.Integer, db.ForeignKey('pokemon.name'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+)
 catch = db.Table(
     'catch',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
@@ -16,7 +21,13 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
-    post = db.relationship('Post', backref='author', lazy=True)
+    wins = db.Column(db.Integer, default=0)
+    losses = db.Column(db.Integer, default=0)
+    ties = db.Column(db.Integer, default=0)
+    squad = db.relationship('Pokemon',
+        secondary = 'pokesquadTable',
+        backref = 'team',
+        lazy = 'dynamic')
 
     def __init__(self, username, email, password):
         self.username = username
@@ -41,6 +52,14 @@ class Post(db.Model):
         self.body = body
         self.user_id = user_id
 
+    def catchPokemon(self, user):
+        db.session.append()
+        db.session.commit()
+    
+    def releasePokemon(self, user):
+        self.liked.remove()
+        db.session.commit()
+        
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -49,10 +68,9 @@ class Pokemon(db.Model):
     base_atk = db.Column(db.String)
     base_hp = db.Column(db.String)
     base_def = db.Column(db.String)
-
-    caught = db.relationship('User',
-        secondary = 'catch',
-        backref = 'caught',
+    squad = db.relationship('User',
+        secondary = 'pokesquadTable',
+        backref = 'userTeam',
         lazy = 'dynamic')
 
     def __init__(self, name, base_xp, front_shiny, base_atk, base_hp, base_def):

@@ -6,10 +6,7 @@ from .services import get_pokemon
 
 import requests, json
 
-
 from app import app
-
-
 
 from .auth.forms import SignUpForm, LoginForm, Poke_Name
 from .models import User, Pokemon
@@ -44,24 +41,4 @@ def pokemonPage():
 
     return render_template('pokepage.html',form=form)
 
-# @app.route('/catchpokemon')
-def catch():
-    catchpokemon
-    for p in catchpokemon:
-        name = pokemon_dict["name"]
-        base_xp= pokemon_dict["base_xp"]
-        front_shiny = pokemon_dict["front_shiny"]
-        base_atk = pokemon_dict["base_atk"]
-        base_hp = pokemon_dict["base_hp"]
-        base_def = pokemon_dict["base_def"]
-
-    new = catch()
-#     u = User.query.get(pokename)
-#     if u:
-#         user.catch(u)
-#         flash(f"You caught {pokename}", category='success')
-#     else:
-#         flash(f"{pokename} doesn't exist!", category='danger')
-
-#     return redirect(url_for('homePage'))
 

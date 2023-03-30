@@ -1,10 +1,8 @@
 from flask import Flask
-
 from config import Config
-
 from .auth.routes import auth
 
-from .models import db, User
+from .models import db, User, poketeamTable
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
@@ -24,5 +22,8 @@ login.init_app(app)
 login.login_view = 'auth.loginPage'
 
 app.register_blueprint(auth)
+app.register_blueprint(team)
+
 
 from . import routes
+from . import models
