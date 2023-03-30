@@ -9,7 +9,7 @@
     <form method='POST' class="col-4">
 
         {{ form.hidden_tag() }}
-        {{ form.poke_name(class='form-control', placeholder = 'Pokemon_Name') }}
+        {{ form.poke_name(class='form-control', placeholder = 'Search for Pokemon to Catch!') }}
         {{ form.submit(class='btn btn-primary', placeholder = 'Submit') }}
     </form>
     </div>
@@ -40,8 +40,8 @@
         <li class="list-group-item">{{ poke_info.base_def }}</li>
         
     </ul>
-    <div class="card-body">
-        <a href="{{url_for('pokesquad.catchPokemon', pokename = poke_info.name)}}" class="card-link">Catch</a>
+    <div class="card-body align-items-center">
+        <a href="{{url_for('pokesquad.catchPokemon', pokename = poke_info.name)}}" class="btn btn-warning btn-lg">Catch</a>
     
     </div>
     {% endif %}

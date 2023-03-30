@@ -21,10 +21,10 @@ def releasePokemon(pokename):
 
 @pokesquad.route('/squad')
 def viewSquad():
-    users = User.team.all()
+    users = User.squad
     d = {}
     for u in users:
-        d[u.username] = u.catchPokemon.all(pokemon)
+        d[u.username] = u.catchPokemon.all()
 
 
 @pokesquad.route('/current_squad')
@@ -32,7 +32,7 @@ def viewCurrentSquad():
     users = User.query.all()
     d = {}
     for u in users:
-        d[u.username] = u.catchPokemon.all(pokemon)
+        d[u.username] = u.catchPokemon.all()
 
 @pokesquad.route('/battle')
 def battleRoyale(user):
