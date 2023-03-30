@@ -2,8 +2,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo
 
+class UserForm(FlaskForm):
+    user = StringField('Search for an Opponet!', validators=[DataRequired()], render_kw={'placeholder': 'Search for an Opponet!'})
+    submit = SubmitField('Search')
+
 class Poke_Name(FlaskForm):
-    poke_name = StringField('Pokemon_Name')
+    poke_name = StringField('Search for Pokemon')
     submit = SubmitField()
 
 class SignUpForm(FlaskForm):

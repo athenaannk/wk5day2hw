@@ -46,6 +46,9 @@ def registerPage():
             username = form.username.data
             email = form.email.data
             password = form.password.data
+            wins = 0
+            losses = 0
+            ties = 0
             if User.query.filter_by(username=username).first():
                 flash('That username already exists, please try another!', 'warning')
                 return redirect(url_for('auth.registerPage'))
@@ -53,10 +56,10 @@ def registerPage():
                 flash('that email has been used previously, try again', 'warning')
                 return redirect(url_for('auth.registerPage'))
 
-            user = User(username, email, password)            
+            user = User(username, email, password, wins, losses, ties)            
             user.saveUser()
 
-            flash(f'Welcome to PokemonInfo {user.username}', 'success')
+            flash(f'Welcome to The Pokemon Game {user.username}', 'success')
             return redirect(url_for('auth.loginPage'))
     return render_template('register.html', form=form)
 

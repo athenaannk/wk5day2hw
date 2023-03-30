@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div><h1>Your Battle Record: {{ current_user.wins }} - {{ current_user.losses }} - {{ current_user.ties }}</h1></div>
+
+
+
+<div class="card-container">
+    {% for pokemon in viewSquad %}
+
+    <div class="card mb-3" style="max-width: 600px; margin: 10px;">
+        <div class="card-body">
+            <h4 class="card-title">{{pokemon.name}}</h4>
+            <p class="card-text">Abilities: {{pokemon.ability}}</p>
+            <p class="card-text">Base ATK: {{pokemon.attack}}</p>
+            <p class="card-text">Base HP: {{pokemon.hp}}</p>
+            <p class="card-text">Base DEF: {{pokemon.defense}}</p>
+            <figure class="container">
+                <figure><img src="{{pokemon.pokemon_img}}" class="img-fluid rounded-start"></figure>
+            </figure>
+        </div>
+        <div> <a class="btn btn-primary w-75" href="/release/{{ pokemon.pokemon_id }}">Release</a>
+        </div>
+    </div>
+
+{% endfor %}
+</div>

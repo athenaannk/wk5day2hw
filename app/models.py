@@ -8,13 +8,9 @@ db= SQLAlchemy()
 
 pokesquadTable = db.Table(
     'pokesquadTable',
-    db.Column('name', db.Integer, db.ForeignKey('pokemon.name'), nullable=False),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+    db.Column('name', db.String, db.ForeignKey('pokemon.name'), nullable=False),
+    db.Column('id', db.Integer, db.ForeignKey('user.id'), nullable=False)
 )
-catch = db.Table(
-    'catch',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('post_id', db.Integer, db.ForeignKey('pokemon.id'), nullable=False))
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,13 +25,24 @@ class User(db.Model, UserMixin):
         backref = 'team',
         lazy = 'dynamic')
 
-    def __init__(self, username, email, password):
+    def __init__(self, username, email, password, wins, losses, ties):
         self.username = username
         self.email = email
         self.password = generate_password_hash(password) 
+        self.wins = wins
+        self.losses = losses
+        self.ties = ties
 
     def saveUser(self):
         db.session.add(self)
+        db.session.commit()
+    
+    def catchPokemon(self, pokemon):
+        self.squad.append(pokemon)
+        db.session.commit()
+    
+    def releasePokemon(self, pokemon):
+        self.squad.remove(pokemon)
         db.session.commit()
 
 class Post(db.Model):
@@ -52,17 +59,9 @@ class Post(db.Model):
         self.body = body
         self.user_id = user_id
 
-    def catchPokemon(self, user):
-        db.session.append()
-        db.session.commit()
-    
-    def releasePokemon(self, user):
-        self.liked.remove()
-        db.session.commit()
-        
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False, unique=True)
     base_xp = db.Column(db.String)
     front_shiny = db.Column(db.String)
     base_atk = db.Column(db.String)

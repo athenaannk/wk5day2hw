@@ -2,35 +2,42 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 from app.models import Pokemon, User, pokesquadTable
 from sqlalchemy import select
-
 pokesquad = Blueprint('pokesquad', __name__, template_folder='pokesquad_templates')
 
-@pokesquad.route('/capture/<int:pokename>')
+@pokesquad.route('/catch/<string:pokename>')
 def catchPokemon(pokename):
-    pokemon = Pokemon.query.get(pokename)
+    pokemon = Pokemon.query.filter_by(name=pokename).first()
     if pokemon:
+        current_user.catchPokemon(pokemon)
+    return redirect(url_for('pokemonPage'))
 
-        current_user.catch(pokemon)
-
-    return redirect(url_for('pokesquad.viewCurrentSquad'))
-
-@pokesquad.route('/release/<int:pokename>')
+@pokesquad.route('/release/<string:pokename>')
 def releasePokemon(pokename):
     pokemon = Pokemon.query.get(pokename)
     if pokemon:
-        current_user.release(pokemon)
+        current_user.releasePokemon(pokemon)
 
     return redirect(url_for('pokesquad.viewCurrentSquad'))
 
+@pokesquad.route('/squad')
+def viewSquad():
+    users = User.team.all()
+    d = {}
+    for u in users:
+        d[u.username] = u.catchPokemon.all(pokemon)
+
+
 @pokesquad.route('/current_squad')
 def viewCurrentSquad():
-    viewSquad = Pokemon.query.join(squadTable).join(User).filter(squadTable.c.user_id == current_user.user_id)
-    return render_template('pokesquad.html', viewSquad=viewSquad)
+    users = User.query.all()
+    d = {}
+    for u in users:
+        d[u.username] = u.catchPokemon.all(pokemon)
 
-@pokesquad.route('/battle/<current_user>/<user>')
-def battleRoyale(user, current_user):
-    user1 = User.query.filter(User.first_name == user).first()
-    user2 = User.query.filter(User.first_name == current_user).first()
+@pokesquad.route('/battle')
+def battleRoyale(user):
+    user1 = User.query.filter(User == user).first()
+    user2 = User.query.filter(User == current_user).first()
     print(user1.wins)
 
     pokesquad1 = user1.pokesquad.all()

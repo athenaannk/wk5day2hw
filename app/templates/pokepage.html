@@ -41,8 +41,8 @@
         
     </ul>
     <div class="card-body">
-        <a href="#" class="card-link">Collect Another</a>
-        <a href="#" class="card-link">Home</a>
+        <a href="{{url_for('pokesquad.catchPokemon', pokename = poke_info.name)}}" class="card-link">Catch</a>
+    
     </div>
     {% endif %}
 </div>
