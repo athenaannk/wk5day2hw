@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     ties = db.Column(db.Integer, default=0)
     squad = db.relationship('Pokemon',
         secondary = 'pokesquadTable',
-        backref = 'team',
+        backref = 'squad',
         lazy = 'dynamic')
 
     def __init__(self, username, email, password, wins, losses, ties):
@@ -67,10 +67,7 @@ class Pokemon(db.Model):
     base_atk = db.Column(db.String)
     base_hp = db.Column(db.String)
     base_def = db.Column(db.String)
-    squad = db.relationship('User',
-        secondary = 'pokesquadTable',
-        backref = 'userTeam',
-        lazy = 'dynamic')
+
 
     def __init__(self, name, base_xp, front_shiny, base_atk, base_hp, base_def):
         self.name = name

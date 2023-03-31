@@ -1,20 +1,18 @@
 .index {
     width: 100vw;
     height: 100vh;
-    background: url("/static/pokemon-in-the-wild.png");
+    background: url("/static/draw.webp");
     background-size: cover;
     text-align: center;
-    font-family: monospace;
-    font-weight: bolder;
-    background-blend-mode: lighten;
+   
+
   }
 
 body {
     width: 100vw;
     height: 100vh;
     text-align: center;
-    font-family: monospace;
-    font-weight: bolder
+   
 }
 
 .accountsignup {
@@ -38,4 +36,12 @@ body {
 
 .pokepic{
     width: 400px
+}
+
+.catchpic{
+    width: 700px
+}
+
+.squadpic{
+    width: 200px;
 }

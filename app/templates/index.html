@@ -17,18 +17,21 @@
     integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
 <body class="index">
-  <h1>The Pokemon Game!</h1>
-  <h3>Catch up to 5 Pokemon for your team!</h3>
-  <h3>Battle other teams!</h3>
-  <br>
-  <button type="button" class="btn btn-danger btn-lg">Sign In</button>
-  <button type="button" class="btn btn-secondary btn-lg">Register</button>
-  <br>
-  <br>
-  <p class="accountsignup">Don't have an account? <a class="signuplink" href="{{ url_for('auth.registerPage') }}">Sign Up!</a></p>
-  </div>
+  <h3>The Pokemon Game!</h3>
+ 
+  <h6>Catch up to 5 Pokemon for your team!</h6>
+
+  <h6>Battle other teams!</h6>
+
+  <audio controls autoplay>
+    <source src="{{ url_for('static', filename='1-01.-Opening.ogg') }}" type="audio/ogg">
+  
+  Your browser does not support the audio element.
+  </audio>
   {% endblock %}
 </body>
 

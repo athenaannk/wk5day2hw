@@ -21,10 +21,14 @@ def releasePokemon(pokename):
 
 @pokesquad.route('/squad')
 def viewSquad():
-    users = User.squad
-    d = {}
-    for u in users:
-        d[u.username] = u.catchPokemon.all()
+    users = current_user.squad.all()
+    print(users)
+    # d={}
+    # d= [current_user.username] = users
+
+    return render_template('pokesquad.html',users=users) 
+    
+   
 
 
 @pokesquad.route('/current_squad')
@@ -33,7 +37,8 @@ def viewCurrentSquad():
     d = {}
     for u in users:
         d[u.username] = u.catchPokemon.all()
-
+    return render_template((template_name_or_list))
+    
 @pokesquad.route('/battle')
 def battleRoyale(user):
     user1 = User.query.filter(User == user).first()

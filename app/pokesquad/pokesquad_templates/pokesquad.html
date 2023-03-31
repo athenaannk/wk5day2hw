@@ -7,22 +7,44 @@
 
 
 <div class="card-container">
-    {% for pokemon in viewSquad %}
+    {% for pokemon in users %}
 
-    <div class="card mb-3" style="max-width: 600px; margin: 10px;">
+    <div class="card mb-3 " style="max-width: 540px;">
+        <div class="row g-0 ">
+          <div class="col-md-4 ">
+            <img src="{{ pokemon.front_shiny }}" class = "squadpic">
+        </div>
+          <div class="col-md-8 ">
+            <div class="card-body ">
+                <h4 class="card-title">{{pokemon.name}}</h4>
+                <p class="card-text">Abilities: {{pokemon.ability}}</p>
+                <p class="card-text">Base ATK: {{pokemon.attack}}</p>
+                <p class="card-text">Base HP: {{pokemon.hp}}</p>
+                <p class="card-text">Base DEF: {{pokemon.defense}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- <div class="card mb-3" style="max-width: 600px; margin: 10px;">
         <div class="card-body">
             <h4 class="card-title">{{pokemon.name}}</h4>
             <p class="card-text">Abilities: {{pokemon.ability}}</p>
             <p class="card-text">Base ATK: {{pokemon.attack}}</p>
             <p class="card-text">Base HP: {{pokemon.hp}}</p>
             <p class="card-text">Base DEF: {{pokemon.defense}}</p>
-            <figure class="container">
-                <figure><img src="{{pokemon.pokemon_img}}" class="img-fluid rounded-start"></figure>
-            </figure>
-        </div>
-        <div> <a class="btn btn-primary w-75" href="/release/{{ pokemon.pokemon_id }}">Release</a>
+            <div class="translate-middle">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="{{ pokemon.front_shiny }}" class = "squadpic">
+                  </div>
+               
+            </div>
+        </div> -->
+        <div> <a class="btn btn-primary" href="/release/{{ pokemon.pokemon_id }}">Release</a>
         </div>
     </div>
 
 {% endfor %}
 </div>
+
+{% endblock %}
